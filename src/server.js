@@ -39,10 +39,10 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoutes);
-app.use('/api/signals', signalRoutes);
-app.use('/api/ok', healthRoutes);
+// app.use('/api/auth', authRoutes);
+// app.use('/api/user', userRoutes);
+// app.use('/api/signals', signalRoutes);
+app.use('/api/ok', () => 'OK');
 
 // Schedule signal analysis
 // cron.schedule('*/15 * * * *', () => {
