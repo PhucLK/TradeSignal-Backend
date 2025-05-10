@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import Signal from '../models/Signal.js';
 import SignalStats from '../models/SignalStats.js';
+import Token from '../models/Token.js';
 import bcrypt from 'bcryptjs';
 
 const defaultUser = {
@@ -61,6 +62,11 @@ const defaultStats = [
   }
 ];
 
+const defaultToken = {
+  userId: 'DefaultUserId',
+  token: 'default-token',
+};
+
 const initDatabase = async () => {
   try {
     // Check if default user exists
@@ -90,6 +96,13 @@ const initDatabase = async () => {
     if (statsCount === 0) {
       await SignalStats.insertMany(defaultStats);
       console.log('Default stats created successfully');
+    }
+
+    // Check if default token exists
+    const existingToken = await Token.findOne({ userId: defaultToken.userId, token: defaultToken.token });
+    if (!existingToken) {
+      await Token.create(defaultToken);
+      console.log('Default token created successfully');
     }
 
     console.log('Database initialization completed');
