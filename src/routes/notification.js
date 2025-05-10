@@ -41,13 +41,13 @@ router.post('/', verifyToken, async (req, res) => {
 // Route to send a push notification
 router.get('/', async (req, res) => {
   try {
-    const { title, body } = req.body;
+    // const { title, body } = req.body;
 
-    if (!title || !body) {
-      return res.status(400).json({ message: 'Title and body are required' });
-    }
+    // if (!title || !body) {
+    //   return res.status(400).json({ message: 'Title and body are required' });
+    // }
 
-    await sendPushNotification(req.user.firebaseToken, title, body);
+    await sendPushNotification();
     res.json({ message: 'Notification sent successfully' });
   } catch (error) {
     console.error('Error sending notification:', error);

@@ -47,9 +47,9 @@ app.use('/api/health', healthRoutes);
 app.use('/api/noti', notification);
 
 // Schedule signal analysis
-cron.schedule('*/2 * * * *', () => {
-  signalAnalyzer.analyzeSignals();
-});
+// cron.schedule('*/2 * * * *', () => {
+//   signalAnalyzer.analyzeSignals();
+// });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
