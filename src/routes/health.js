@@ -3,7 +3,7 @@ import express from 'express';
 const router = express.Router();
 // Get all signals with pagination
 router.get('/', async (req, res) => {
-  return 'OK';
+  res.json({'Status': 'OK'});
 });
 
 export default router;

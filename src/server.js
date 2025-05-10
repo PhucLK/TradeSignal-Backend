@@ -39,32 +39,15 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
-// app.use('/api/auth', authRoutes);
-// app.use('/api/user', userRoutes);
-// app.use('/api/signals', signalRoutes);
-// app.use('/api/ok', () => 'OK');
-
-// Dummy in-memory data
-let users = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' }
-];
-
-// Routes
-app.get('/api/users', (req, res) => {
-  res.json(users);
-});
-
-// Routes
-app.get('/api/users', (req, res) => {
-  res.json(users);
-});
-
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/signals', signalRoutes);
+app.use('/api/health', healthRoutes);
 
 // Schedule signal analysis
-// cron.schedule('*/15 * * * *', () => {
-//   signalAnalyzer.analyzeSignals();
-// });
+cron.schedule('*/2 * * * *', () => {
+  signalAnalyzer.analyzeSignals();
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
