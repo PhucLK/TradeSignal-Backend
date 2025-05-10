@@ -10,6 +10,7 @@ import initDatabase from './seeders/initDatabase.js';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
 import signalRoutes from './routes/signals.js';
+import healthRoutes from './routes/health.js';
 
 // Import services
 import signalAnalyzer from './services/signalAnalyzer.js';
@@ -41,6 +42,7 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/signals', signalRoutes);
+app.use('/api/ok', healthRoutes);
 
 // Schedule signal analysis
 cron.schedule('*/15 * * * *', () => {
