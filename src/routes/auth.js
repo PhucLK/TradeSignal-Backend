@@ -84,4 +84,38 @@ router.post('/device-token', async (req, res) => {
   }
 });
 
-export default router; 
+// Login route
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Generate Firebase token
+    const firebaseToken = await admin.auth().createCustomToken(user.email);
+
+    // Call registerForPushNotifications (placeholder for actual implementation)
+    // You can replace this with the actual logic to register the device for push notifications
+    console.log('registerForPushNotifications called for user:', user.email);
+
+    res.json({
+      message: 'Login successful',
+      firebaseToken,
+    });
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ message: 'Error during login' });
+  }
+});
+
+export default router;

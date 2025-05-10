@@ -12,7 +12,7 @@ export const sendPushNotification = async () => {
     
     // Send a message to the device corresponding to the provided
     // registration token.
-    messaging().send(message)
+    admin.messaging().send(message)
       .then((response) => {
         // Response is a message ID string.
         console.log('Successfully sent message:', response);

@@ -12,6 +12,7 @@ import userRoutes from './routes/user.js';
 import signalRoutes from './routes/signals.js';
 import healthRoutes from './routes/health.js';
 import notification from './routes/notification.js';
+import tokenRoutes from './routes/token.js';
 
 // Import services
 import signalAnalyzer from './services/signalAnalyzer.js';
@@ -45,6 +46,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/signals', signalRoutes);
 app.use('/api/health', healthRoutes);
 app.use('/api/noti', notification);
+app.use('/api/register-token', tokenRoutes);
 
 // Schedule signal analysis
 // cron.schedule('*/2 * * * *', () => {
