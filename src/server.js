@@ -55,12 +55,6 @@ app.get('/api/users', (req, res) => {
   res.json(users);
 });
 
-// Dummy in-memory data
-let users = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' }
-];
-
 // Routes
 app.get('/api/users', (req, res) => {
   res.json(users);
