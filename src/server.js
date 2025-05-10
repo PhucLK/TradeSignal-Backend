@@ -45,9 +45,9 @@ app.use('/api/signals', signalRoutes);
 app.use('/api/ok', healthRoutes);
 
 // Schedule signal analysis
-cron.schedule('*/15 * * * *', () => {
-  signalAnalyzer.analyzeSignals();
-});
+// cron.schedule('*/15 * * * *', () => {
+//   signalAnalyzer.analyzeSignals();
+// });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
