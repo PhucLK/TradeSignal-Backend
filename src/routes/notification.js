@@ -22,7 +22,7 @@ const verifyToken = async (req, res, next) => {
 };
 
 // Route to send a push notification
-router.post('/noti', verifyToken, async (req, res) => {
+router.post('/', verifyToken, async (req, res) => {
   try {
     const { title, body } = req.body;
 
@@ -39,7 +39,7 @@ router.post('/noti', verifyToken, async (req, res) => {
 });
 
 // Route to send a push notification
-router.get('/noti', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const { title, body } = req.body;
 
