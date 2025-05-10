@@ -42,7 +42,30 @@ mongoose.connect(process.env.MONGODB_URI)
 // app.use('/api/auth', authRoutes);
 // app.use('/api/user', userRoutes);
 // app.use('/api/signals', signalRoutes);
-app.use('/api/ok', () => 'OK');
+// app.use('/api/ok', () => 'OK');
+
+// Dummy in-memory data
+let users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' }
+];
+
+// Routes
+app.get('/api/users', (req, res) => {
+  res.json(users);
+});
+
+// Dummy in-memory data
+let users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' }
+];
+
+// Routes
+app.get('/api/users', (req, res) => {
+  res.json(users);
+});
+
 
 // Schedule signal analysis
 // cron.schedule('*/15 * * * *', () => {
