@@ -1,4 +1,4 @@
-import Token from '../models/Token';
+import Token from '../models/Token.js';
 const express = require('express');
 const app = express();
 app.use(express.json());
@@ -13,4 +13,4 @@ app.post('/', async (req, res) => {
   res.send('Token saved');
 });
 
-export default router; 
+export default router;
