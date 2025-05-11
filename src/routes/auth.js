@@ -7,6 +7,9 @@ const router = express.Router();
 
 // Register new user
 router.post('/register', async (req, res) => {
+  console.log('Registering user');
+  console.log(req.body);
+  
   try {
     const { email, password } = req.body;
 
@@ -36,14 +39,16 @@ router.post('/register', async (req, res) => {
     await user.save();
 
     // Create Firebase user
-    const firebaseUser = await admin.auth().createUser({
-      email,
-      password
-    });
+    // const firebaseUser = await admin.auth().createUser({
+    //   email,
+    //   password
+    // });
 
     res.status(201).json({
       message: 'User created successfully',
-      uid: firebaseUser.uid
+      // uid: firebaseUser.uid,
+      success : true,
+      userId: user._id // Include the MongoDB user ID
     });
   } catch (error) {
     console.error('Error registering user:', error);
@@ -102,7 +107,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Generate Firebase token
-    const firebaseToken = await admin.auth().createCustomToken(user.email);
+    // const firebaseToken = await admin.auth().createCustomToken(user.email);
 
     // Call registerForPushNotifications (placeholder for actual implementation)
     // You can replace this with the actual logic to register the device for push notifications
@@ -110,7 +115,9 @@ router.post('/login', async (req, res) => {
 
     res.json({
       message: 'Login successful',
-      firebaseToken,
+      // firebaseToken,
+      success : true,
+      userId: user._id // Include the MongoDB user ID
     });
   } catch (error) {
     console.error('Error during login:', error);
